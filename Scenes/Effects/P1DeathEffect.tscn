@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Particles/P1DeathParticle.tres" type="Material" id=1]
+[ext_resource path="res://Scripts/Effect.gd" type="Script" id=2]
+
+[node name="P1DeathEffect" type="Node2D"]
+modulate = Color( 1, 1, 1.2, 1 )
+z_index = 11
+script = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 128
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 1.0
+process_material = ExtResource( 1 )

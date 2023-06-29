@@ -1,0 +1,166 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Art/Characters/Character-Sprite-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Character Sprites.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "01"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 3, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "02"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ), Vector2( 1, 2 ), Vector2( 2, 2 ), Vector2( 3, 2 ), Vector2( 4, 2 ), Vector2( 5, 2 ), Vector2( 6, 2 ), Vector2( 7, 2 ), Vector2( 8, 2 ), Vector2( 9, 2 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "06"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 6 ), Vector2( 1, 6 ), Vector2( 2, 6 ), Vector2( 3, 6 ), Vector2( 4, 6 ), Vector2( 5, 6 ), Vector2( 6, 6 ), Vector2( 7, 6 ), Vector2( 8, 6 ), Vector2( 9, 6 ), Vector2( 10, 6 ), Vector2( 11, 6 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "07"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 7 ), Vector2( 1, 7 ), Vector2( 2, 7 ), Vector2( 3, 7 ), Vector2( 4, 7 ), Vector2( 5, 7 ), Vector2( 6, 7 ), Vector2( 7, 7 ), Vector2( 8, 7 ), Vector2( 9, 7 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "11"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 10 ), Vector2( 1, 10 ), Vector2( 2, 10 ), Vector2( 3, 10 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "12"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 11 ), Vector2( 1, 11 ), Vector2( 2, 11 ), Vector2( 3, 11 ), Vector2( 4, 11 ), Vector2( 5, 11 ), Vector2( 6, 11 ), Vector2( 7, 11 ), Vector2( 8, 11 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "16"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 15 ), Vector2( 1, 15 ), Vector2( 2, 15 ), Vector2( 3, 15 ), Vector2( 4, 15 ), Vector2( 5, 15 ), Vector2( 6, 15 ), Vector2( 7, 15 ), Vector2( 8, 15 ), Vector2( 9, 15 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "17"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 16 ), Vector2( 1, 16 ), Vector2( 2, 16 ), Vector2( 3, 16 ), Vector2( 4, 16 ), Vector2( 5, 16 ), Vector2( 6, 16 ), Vector2( 7, 16 ), Vector2( 8, 16 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+
+[node name="Character Sprites" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 12
+vframes = 18
+frame = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/01 = SubResource( 1 )
+anims/02 = SubResource( 7 )
+anims/06 = SubResource( 6 )
+anims/07 = SubResource( 2 )
+anims/11 = SubResource( 3 )
+anims/12 = SubResource( 9 )
+anims/16 = SubResource( 8 )
+anims/17 = SubResource( 4 )
+anims/RESET = SubResource( 5 )
