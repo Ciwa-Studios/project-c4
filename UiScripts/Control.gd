@@ -76,7 +76,6 @@ func _init_Play_UI():
 	$Menu.visible = false
 	$Patch.visible = false
 	$Links.visible = false
-	return3.visible = true
 
 func _init_Menu_UI():
 # called when "FadeOutOptions_ToMenu" animation is finished

@@ -28,12 +28,14 @@ var board
 
 
 func _ready():
+	Global.connect("game_over", self, "reset")
 # warning-ignore:return_value_discarded
 	Global.connect("destroy_counter", self, "destory_child_pos")
 # warning-ignore:return_value_discarded
 	Global.connect("place_counter", self, "place_item")
 # warning-ignore:return_value_discarded
 	Global.connect("skill_1", self, "spawn_laser")
+	grid = []
 	for x in range(grid_size.x):
 		grid.append([])
 		for _y in range(grid_size.y):
@@ -46,7 +48,7 @@ func _ready():
 
 func _physics_process(_delta):
 	target_pos = Global.target_pos
-#	crosshair_pos = Global.crosshair
+	crosshair_pos = Global.crosshair
 	board = Global.board
 	positions = Global.positions
 	
@@ -96,12 +98,6 @@ func update_child_pos(this_world_pos, direction, _type):
 	var this_grid_pos = world_to_map(this_world_pos)
 	var new_grid_pos = this_grid_pos + direction
 
-	# remove Crosshair from current grid location
-#	grid[this_grid_pos.x][this_grid_pos.y] = EMPTY
-#
-#	# place Crosshair on new grid location
-#	grid[new_grid_pos.x][new_grid_pos.y] = CROSSHAIR
-
 	var new_world_pos = map_to_world(new_grid_pos) + half_tile_size
 	return new_world_pos
 
@@ -112,3 +108,7 @@ func spawn_laser():
 		new_laser.position.x = 0
 		add_child(new_laser)
 	pass
+
+func reset():
+	self.get_node("Crosshair").queue_free()
+	

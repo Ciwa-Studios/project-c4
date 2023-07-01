@@ -206,9 +206,16 @@ func reset():
 	for r in ROWS:
 		for c in COLUMNS:
 			destroy_block(Vector2(c,r))
-			p1_health = 3
-			p2_health = 3
-	turn = 0
+	p1_health = 3
+	p2_health = 3
+	turn = 0 
+	piece = 1 
+	counter = 0 
+	target_counter = 0
+	crosshair = Vector2(4,4) 
+	target_pos = Vector2(4,4)
+	row = 4
+	col = 4
 	game_over = false
 
 func _ready():
@@ -220,8 +227,7 @@ func _physics_process(_delta):
 	
 	if game_over == false:
 		if Input.is_action_just_pressed("test"): #test
-			destroy_block()
-			skip_turn()
+			reset()
 			
 		if turn == 0: #P1's turn
 			if Input.is_action_just_pressed("p1enter"): #placing counter

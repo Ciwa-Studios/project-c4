@@ -13,6 +13,7 @@ onready var p2Pharaoh = get_parent().get_node("P2/Pharaoh")
 onready var p2Robot = get_parent().get_node("P2/Robot")
 
 onready var transition = get_parent().get_node("CanvasLayer/Transition")
+onready var canvasLayer = $"../CanvasLayer"
 
 var rng = RandomNumberGenerator.new()
 
@@ -33,6 +34,7 @@ export (Vector2) var portraitOffset
 onready var gridContainer = get_parent().get_node("GridContainer")
 
 func _ready():
+	canvasLayer.visible = false
 	for nameOfCharacter in get_tree().get_nodes_in_group("Characters"):
 		characters.append(nameOfCharacter)
 	texture = player1Text
@@ -211,6 +213,7 @@ func _process(_delta):
 					confirm.play()
 					texture = null
 					
+					
 									
 				elif currentSelected == 4: #random
 					print("Player 2 has chosen a character: " + str(currentSelected)) 
@@ -242,5 +245,7 @@ func _process(_delta):
 
 func start_game():
 # warning-ignore:return_value_discarded
+	Global.reset()
 	get_tree().change_scene("res://Scenes/Main.tscn")
-	Global.game_over = false
+	print(Global.board)
+	
