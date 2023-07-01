@@ -18,6 +18,8 @@ var rng = RandomNumberGenerator.new()
 
 var turnLeft
 var turnRight
+var turnUp
+var turnDown
 var accept
 var currentSelected = 0
 var currentColumnSpot = 0
@@ -37,15 +39,18 @@ func _ready():
 	
 func _process(_delta):
 	if Global.play == true:
-		print("true")
 		if texture == player1Text:
 			accept = "p1enter"
 			turnRight = "p1right"
 			turnLeft = "p1left"
+			turnUp = "p1up"
+			turnDown = "p1down"
 		elif texture == player2Text:
 			accept = "p2enter"
 			turnRight = "p2right"
 			turnLeft = "p2left"
+			turnUp = "p2up"
+			turnDown = "p2down"
 		
 		if(Input.is_action_just_pressed(turnRight)):
 			currentSelected += 1
@@ -89,6 +94,33 @@ func _process(_delta):
 				currentSelected = characters.size() - 1
 			else:
 				position.x -= portraitOffset.x # Move to the new position based on the offset
+		if(Input.is_action_just_pressed(turnDown)):
+			currentSelected += 3
+			currentRowSpot += 1
+			
+			print(currentRowSpot)
+			if currentRowSpot > ((characters.size() - 1) / (gridContainer.columns -1)) - 2:
+				position.y -= (currentRowSpot - 1) * portraitOffset.y
+				
+				currentRowSpot = 0
+				currentSelected = 0;
+			else:
+				position.y += portraitOffset.y
+				
+		elif(Input.is_action_just_pressed(turnUp)):
+			currentSelected -= 3
+			currentRowSpot -= 1
+			
+			print(currentRowSpot)
+			if currentRowSpot < 0:
+				position.y -= (currentRowSpot - 1) * portraitOffset.y
+				
+				currentRowSpot = ((characters.size() - 1) / (gridContainer.columns -1)) - 2;
+				print(currentRowSpot)
+				currentSelected += characters.size();
+			else:
+				position.y -= portraitOffset.y
+			
 
 		if currentSelected == 3: #robot
 			if texture == player1Text:
