@@ -124,7 +124,7 @@ func _process(_delta):
 				position.y -= portraitOffset.y
 			
 
-		if currentSelected == 3: #robot
+		if currentSelected == 1: #Pharaoh
 			if texture == player1Text:
 				p1Label.text = "Pharaoh"
 				p1Robot.visible = false
@@ -133,6 +133,15 @@ func _process(_delta):
 				p2Label.text = "Pharaoh"
 				p2Robot.visible = false
 				p2Pharaoh.visible = true
+		elif currentSelected == 0: #Robot
+			if texture == player1Text:
+				p1Label.text = "Robot"
+				p1Robot.visible = true
+				p1Pharaoh.visible = false
+			elif texture == player2Text:
+				p2Label.text = "Robot"
+				p2Robot.visible = true
+				p2Pharaoh.visible = false
 		elif currentSelected == 4: #random
 			if texture == player1Text:
 				p1Label.text = "Random"
@@ -141,15 +150,6 @@ func _process(_delta):
 			elif texture == player2Text:
 				p2Label.text = "Random"
 				p2Robot.visible = false
-				p2Pharaoh.visible = false
-		elif currentSelected == 5: #pharaoh
-			if texture == player1Text:
-				p1Label.text = "Robot"
-				p1Robot.visible = true
-				p1Pharaoh.visible = false
-			elif texture == player2Text:
-				p2Label.text = "Robot"
-				p2Robot.visible = true
 				p2Pharaoh.visible = false
 		else:
 			if texture == player1Text:
@@ -161,22 +161,17 @@ func _process(_delta):
 				p2Robot.visible = false
 				p2Pharaoh.visible = false
 
-
 		if (Input.is_action_just_pressed(accept)):
 			if texture == player1Text:
-				if currentSelected == 3: #pharaoh
-					print("Player 1 has chosen a character: " + str(currentSelected)) #robot
-					Global.p1_char = 1
+				if currentSelected == 0 or currentSelected == 1: #robot
+					Global.p1_char = currentSelected
 					var sprite = Sprite.new()
 					sprite.texture = texture
 					get_parent().add_child(sprite)
 					sprite.position = Vector2(position.x, position.y)
 					texture = player2Text
 					confirm.play()
-					
-					
 				elif currentSelected == 4: #random
-					print("Player 1 has chosen a character: " + str(currentSelected)) 
 					Global.p1_char = rng.randi_range(0, 1) #currentSelected
 					var sprite = Sprite.new()
 					sprite.texture = texture
@@ -184,26 +179,13 @@ func _process(_delta):
 					sprite.position = Vector2(position.x, position.y)
 					texture = player2Text
 					confirm.play()
-				
-				elif currentSelected == 5: #robot
-					print("Player 1 has chosen a character: " + str(currentSelected))
-					Global.p1_char = 0
-					print(Global.p2_char)
-					var sprite = Sprite.new()
-					sprite.texture = texture
-					get_parent().add_child(sprite)
-					sprite.position = Vector2(position.x, position.y)
-					texture = player2Text
-					confirm.play()
-								
 				else:
 					print("Work in progress character")
 					deny.play()
 
 			elif texture == player2Text:
-				if currentSelected == 3: #Pharoah
-					print("Player 2 has chosen a character: " + str(currentSelected)) 
-					Global.p2_char = 1
+				if currentSelected == 0 or currentSelected == 1:
+					Global.p2_char = currentSelected
 					CharacterManager.manage()
 					transition.play("Start")
 					var sprite = Sprite.new()
@@ -212,25 +194,9 @@ func _process(_delta):
 					sprite.position = Vector2(position.x, position.y)
 					confirm.play()
 					texture = null
-					
-					
-									
 				elif currentSelected == 4: #random
 					print("Player 2 has chosen a character: " + str(currentSelected)) 
 					Global.p2_char = rng.randi_range(0, 1) #currentSelected
-					CharacterManager.manage()
-					transition.play("Start")
-					var sprite = Sprite.new()
-					sprite.texture = texture
-					get_parent().add_child(sprite)
-					sprite.position = Vector2(position.x, position.y)
-					confirm.play()
-					texture = null
-									
-				elif currentSelected == 5: #Robot
-					print("Player 2 has chosen a character: " + str(currentSelected)) 
-					Global.p2_char = 0
-					print(Global.p2_char)
 					CharacterManager.manage()
 					transition.play("Start")
 					var sprite = Sprite.new()

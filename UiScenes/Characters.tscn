@@ -150,13 +150,13 @@ columns = 3
 [node name="0" type="TextureRect" parent="GridContainer" groups=["Characters"]]
 margin_right = 32.0
 margin_bottom = 32.0
-texture = ExtResource( 3 )
+texture = ExtResource( 7 )
 
 [node name="1" type="TextureRect" parent="GridContainer" groups=["Characters"]]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 32.0
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 
 [node name="2" type="TextureRect" parent="GridContainer" groups=["Characters"]]
 margin_left = 72.0
@@ -168,7 +168,7 @@ texture = ExtResource( 3 )
 margin_top = 36.0
 margin_right = 32.0
 margin_bottom = 68.0
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 
 [node name="4" type="TextureRect" parent="GridContainer" groups=["Characters"]]
 margin_left = 36.0
@@ -182,7 +182,7 @@ margin_left = 72.0
 margin_top = 36.0
 margin_right = 104.0
 margin_bottom = 68.0
-texture = ExtResource( 7 )
+texture = ExtResource( 3 )
 
 [node name="6" type="TextureRect" parent="GridContainer" groups=["Characters"]]
 margin_top = 72.0

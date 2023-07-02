@@ -63,6 +63,7 @@ var board = [ #gameboard as array
 
 var positions = [] #array of placed counters
 var positions_pieces = [] #array of the piece of placed counters
+var positions_types = [] #array of the type of placed counters
 
 func skip_turn():
 	target_counter = 0
@@ -85,6 +86,7 @@ func place_counter(r=row , c=col, p=piece, t = 0):
 		board[r][c] = p
 		positions.append(Vector2(c, r))
 		positions_pieces.append(p)
+		positions_types.append(t)
 		emit_signal("place_counter")
 		winning_move()
 		skip_turn()
@@ -99,6 +101,7 @@ func place_counter_no_skip(r=row , c=col, p=piece, t = 0):
 		board[r][c] = p
 		positions.append(Vector2(c, r))
 		positions_pieces.append(p)
+		positions_types.append(t)
 		emit_signal("place_counter")
 		winning_move()
 	else:
@@ -116,6 +119,7 @@ func destroy_block(t = Vector2(col, row)):
 			board[t.y][t.x] = 0
 			positions.remove(i)
 			positions_pieces.remove(i)
+			positions_types.remove(i)
 			emit_signal("destroy_counter", t)
 			break
 
@@ -221,13 +225,105 @@ func reset():
 func _ready():
 	CharacterManager.manage()
 
+#1st Skills:
+func laser():
+	for c in COLUMNS:
+		if check_for_counter(row, c):
+			skill_used = true
+			print(check_for_counter(row, c))
+			destroy_block(Vector2(c, crosshair.y))
+		if c == COLUMNS-1 and skill_used ==true:
+			if turn == 0:
+				p1_cooldown_s1 = p1_max_cooldown_s1
+			else:
+				p2_cooldown_s1 = p2_max_cooldown_s1
+			emit_signal("skill_1")
+			skip_turn()
+func sand():
+	var target_r = ROWS - 1
+	if board[0][col] == 0 and !check_for_counter(row, col):
+		for r in range(row ,ROWS):
+			if check_for_counter(r, col):
+				target_r = r-1
+				break
+		counter = 1
+		if turn == 0:
+			p1_cooldown_s1 = p1_max_cooldown_s1
+		else:
+			p2_cooldown_s1 = p2_max_cooldown_s1
+		place_counter(target_r, col, piece, 1)
+func hacking():
+	if check_for_counter(row, col):
+		if turn == 0:
+			p1_cooldown_s1 = p1_max_cooldown_s1
+		else:
+			p2_cooldown_s1 = p2_max_cooldown_s1
+		destroy_block()
+		place_counter()
+func bricks():
+	if !check_for_counter(row,col):
+		if turn == 0:
+			p1_cooldown_s1 = p1_max_cooldown_s1
+		else:
+			p2_cooldown_s1 = p2_max_cooldown_s1
+		place_counter(row, col, 1, 2)
+
+#2nd Skills:
+func blitz():
+	for c in COLUMNS:
+		for r in ROWS:
+			if check_for_counter(r, c):
+				skill_used = true
+				destroy_block(Vector2(c, r))
+				break
+			if c == COLUMNS-1 and skill_used ==true:
+				if turn == 0:
+					p1_cooldown_s2 = p1_max_cooldown_s2
+				else:
+					p2_cooldown_s2 = p2_max_cooldown_s2
+				skip_turn()
+func pyramid():
+	var prev_positions_pieces = positions_pieces.duplicate()
+	var prev_positions = positions.duplicate()
+	var prev_positions_types = positions_types.duplicate()
+	var target_r = ROWS - 1
+	for c in COLUMNS:
+		for r in ROWS:
+			target_r = ROWS -1
+			for n in len(prev_positions):
+				if prev_positions[n] == Vector2(c,ROWS - r - 1) and prev_positions_types[n] != 2:
+					# warning-ignore:shadowed_variable
+					for row in range(prev_positions[n].y + 1 ,ROWS):
+						if check_for_counter(row,c):
+								target_r = row - 1
+								print(target_r)
+								break
+					destroy_block(Vector2(c,ROWS - r - 1))
+					counter = 1
+					place_counter_no_skip(target_r, c, prev_positions_pieces[n], 1)
+					winning_move()
+	if turn == 0:
+		p1_cooldown_s2 = p1_max_cooldown_s2
+	else:
+		p2_cooldown_s2 = p2_max_cooldown_s2
+	skip_turn()
+
+#counter skills:
+func sand_counter():
+	target_counter = 1
+	if turn == 1:
+		p1_cooldown_s1 = p1_max_cooldown_s1
+	else:
+		p2_cooldown_s1 = p2_max_cooldown_s1
+
 func _physics_process(_delta):
 #	if Input.is_action_pressed("reset"):
 #		reset()
 	
 	if game_over == false:
-		if Input.is_action_just_pressed("test"): #test
-			reset()
+#		if Input.is_action_just_pressed("test"): #test
+#			destroy_block()
+#			skip_turn()
 			
 		if turn == 0: #P1's turn
 			if Input.is_action_just_pressed("p1enter"): #placing counter
@@ -236,74 +332,26 @@ func _physics_process(_delta):
 			if Input.is_action_just_pressed("p1skill1") and p1_cooldown_s1 == 0: #P1 Skill 1:
 				
 				if p1_s1 == 0: #Laser
-					for c in COLUMNS:
-						if check_for_counter(row, c):
-							skill_used = true
-							print(check_for_counter(row, c))
-							destroy_block(Vector2(c, crosshair.y))
-						if c == COLUMNS-1 and skill_used ==true:
-							p1_cooldown_s1 = p1_max_cooldown_s1
-							emit_signal("skill_1")
-							skip_turn()
+					laser()
 				
 				if p1_s1 == 2: #Sand
-					var target_r = ROWS - 1
-					if board[0][col] == 0 and !check_for_counter(row, col):
-						for r in range(row ,ROWS):
-							if check_for_counter(r, col):
-								target_r = r-1
-								print(target_r)
-								break
-						counter = 1
-						place_counter(target_r, col, piece, 1)
-						p1_cooldown_s1 = p1_max_cooldown_s1
+					sand()
+				
+				if p1_s1 == 4: #Bricks
+					bricks()
 				
 				if p1_s1 == 6: #Hacking
-					if check_for_counter(row, col):
-						destroy_block()
-						place_counter()
-						p1_cooldown_s1 = p1_max_cooldown_s1
+					hacking()
 				
 				print("power1")
 			
 			if Input.is_action_just_pressed("p1skill2") and p1_cooldown_s2 == 0: #P1 Skill 2:
 				
 				if p1_s2 == 1: #Blitz
-					for c in COLUMNS:
-						for r in ROWS:
-							if check_for_counter(r, c):
-								skill_used = true
-								destroy_block(Vector2(c, r))
-								break
-							if c == COLUMNS-1 and skill_used ==true:
-								p1_cooldown_s2 = p1_max_cooldown_s2
-								skip_turn()
-					pass
+					blitz()
 				
 				if p1_s2 == 3: #Pyrimid
-					var prev_positions_pieces = []
-					var prev_positions = [] 
-					var target_r = ROWS - 1
-					for i in len(positions):
-						prev_positions.append(positions[i])
-						prev_positions_pieces.append(positions_pieces[i])
-					for c in COLUMNS:
-						for r in ROWS:
-							target_r = ROWS -1
-							for n in len(prev_positions):
-								if prev_positions[n] == Vector2(c,ROWS - r - 1):
-									# warning-ignore:shadowed_variable
-									for row in range(prev_positions[n].y + 1 ,ROWS):
-										if check_for_counter(row,c):
-												target_r = row - 1
-												print(target_r)
-												break
-									destroy_block(Vector2(c,ROWS - r - 1))
-									counter = 1
-									place_counter_no_skip(target_r, c, prev_positions_pieces[n], 1)
-									winning_move()
-					p1_cooldown_s2 = p1_max_cooldown_s2
-					skip_turn()
+					pyramid()
 				
 				
 				print("power2")
@@ -311,8 +359,7 @@ func _physics_process(_delta):
 			if Input.is_action_just_pressed("p2skill1") and p2_cooldown_s1 == 0: #P1 Skill 1 counters:
 				
 				if p2_s1 == 2:
-					target_counter = 1
-					p2_cooldown_s1 = p2_max_cooldown_s1
+					sand_counter()
 			
 		if turn == 1: #P2's turn
 			if Input.is_action_just_pressed("p2enter"): #placing counter
@@ -321,76 +368,29 @@ func _physics_process(_delta):
 			if Input.is_action_just_pressed("p2skill1") and p2_cooldown_s1 == 0: #P2 Skill 1
 				
 				if p2_s1 == 0: #laser
-					for c in COLUMNS:
-						if check_for_counter(row, c):
-							skill_used = true
-							print(check_for_counter(row, c))
-							destroy_block(Vector2(c, crosshair.y))
-						if c == COLUMNS-1 and skill_used ==true:
-							p2_cooldown_s1 = p2_max_cooldown_s1
-							emit_signal("skill_1")
-							skip_turn()
+					laser()
 				
 				if p2_s1 == 2: #Sand
-					var target_r = ROWS - 1
-					if board[0][col] == 0 and !check_for_counter(row, col):
-						for r in range(row ,ROWS):
-							if check_for_counter(r, col):
-								target_r = r-1
-								print(target_r)
-								break
-						counter = 1
-						place_counter(target_r, col, piece, 1)
+					sand()
+				
+				if p2_s1 == 4: #Bricks
+					bricks()
 				
 				if p2_s1 == 6: #Hacking
-					if check_for_counter(row, col):
-						destroy_block()
-						place_counter()
-				
-				
+					hacking()
 				
 				print("P2 power1")
 			
 			if Input.is_action_just_pressed("p2skill2") and p2_cooldown_s2 == 0: #P2 skill 2
 				
 				if p2_s2 == 1: #Blitz
-					for c in COLUMNS:
-						for r in ROWS:
-							if check_for_counter(r, c):
-								skill_used = true
-								destroy_block(Vector2(c, r))
-								break
-							if c == COLUMNS-1 and skill_used ==true:
-								p2_cooldown_s2 = p2_max_cooldown_s2
-								skip_turn()
-					pass
+					blitz()
 				
 				if p2_s2 == 3: #Pyrimid
-					var prev_positions_pieces = []
-					var prev_positions = [] 
-					var target_r = ROWS - 1
-					for i in len(positions):
-						prev_positions.append(positions[i])
-						prev_positions_pieces.append(positions_pieces[i])
-					for c in COLUMNS:
-						for r in ROWS:
-							target_r = ROWS -1
-							for n in len(prev_positions):
-								if prev_positions[n] == Vector2(c,ROWS - r - 1):
-									# warning-ignore:shadowed_variable
-									for row in range(prev_positions[n].y + 1 ,ROWS):
-										if check_for_counter(row,c):
-												target_r = row - 1
-												print(target_r)
-												break
-									destroy_block(Vector2(c,ROWS - r - 1))
-									counter = 1
-									place_counter_no_skip(target_r, c, prev_positions_pieces[n], 1)
-					p2_cooldown_s2 = p2_max_cooldown_s2
-					skip_turn()
+					pyramid()
+				
 				print("P2 power2")
 			
 			if Input.is_action_just_pressed("p1skill1") and p1_cooldown_s1 == 0: #P1 Skill 1 counters:
 					if p1_s1 == 2:
-						target_counter = 1
-						p1_cooldown_s1 = p1_max_cooldown_s1
+						sand_counter()
