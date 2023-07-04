@@ -27,7 +27,8 @@ func return_to_menu():
 	Global.reset()
 	animation.play("RESET")
 	transition.visible = false
-	get_tree().change_scene("res://UiScenes/MainMenu.tscn")
+	Global.play = false
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 func _on_Timer_timeout():
 	animation.play("End")
