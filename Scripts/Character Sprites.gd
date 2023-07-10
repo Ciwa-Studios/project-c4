@@ -22,11 +22,11 @@ func _ready():
 func _physics_process(_delta):
 	if playing:
 		if player == 1:
-			if Input.is_action_just_pressed("p1enter") and Global.turn == 0:
+			if Input.is_action_just_pressed("p1enter"):
 				animation.play(str(character) + "2")
 				animation.queue(str(character) + "1")
 		if player == 2:
-			if Input.is_action_just_pressed("p2enter") and Global.turn == 1:
+			if Input.is_action_just_pressed("p2enter"):
 				animation.play(str(character) + "2")
 				animation.queue(str(character) + "1")
 

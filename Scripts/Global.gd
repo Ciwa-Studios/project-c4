@@ -241,7 +241,7 @@ func laser():
 			skip_turn()
 func sand():
 	var target_r = ROWS - 1
-	if board[0][col] == 0 and !check_for_counter(row, col):
+	if!check_for_counter(row, col):
 		for r in range(row ,ROWS):
 			if check_for_counter(r, col):
 				target_r = r-1
@@ -251,7 +251,17 @@ func sand():
 			p1_cooldown_s1 = p1_max_cooldown_s1
 		else:
 			p2_cooldown_s1 = p2_max_cooldown_s1
-		place_counter(target_r, col, piece, 1)
+		place_counter_no_skip(target_r, col, piece, 1)
+	else:
+		for x in range(len(positions)):
+			if positions[x] == Vector2(col, row) and positions_pieces[x] == turn + 1:
+				destroy_block()
+				place_counter_no_skip(row, col, piece, 1)
+				if turn == 0:
+					p1_cooldown_s1 = p1_max_cooldown_s1
+				else:
+					p2_cooldown_s1 = p2_max_cooldown_s1
+	skip_turn()
 func hacking():
 	if check_for_counter(row, col):
 		if turn == 0:
@@ -267,6 +277,17 @@ func bricks():
 		else:
 			p2_cooldown_s1 = p2_max_cooldown_s1
 		place_counter(row, col, 1, 2)
+func anvil():
+	if !check_for_counter(row, col):
+		place_counter_no_skip(row, col, piece, 1)
+		for x in range(row + 1, ROWS):
+			destroy_block(Vector2(col, x))
+		if turn == 0:
+			p1_cooldown_s1 = p1_max_cooldown_s1
+		else:
+			p2_cooldown_s1 = p2_max_cooldown_s1
+		skip_turn()
+	pass
 
 #2nd Skills:
 func blitz():
@@ -308,6 +329,17 @@ func pyramid():
 		p2_cooldown_s2 = p2_max_cooldown_s2
 	skip_turn()
 
+func Fire_wall():
+	if turn == 0:
+		p2_cooldown_s1 += 5
+		p2_cooldown_s2 += 5
+		p1_cooldown_s2 = p1_max_cooldown_s2
+	if turn == 1:
+		p1_cooldown_s1 += 5
+		p1_cooldown_s2 += 5
+		p2_cooldown_s2 = p2_max_cooldown_s2
+	skip_turn()
+
 #counter skills:
 func sand_counter():
 	target_counter = 1
@@ -331,28 +363,34 @@ func _physics_process(_delta):
 			
 			if Input.is_action_just_pressed("p1skill1") and p1_cooldown_s1 == 0: #P1 Skill 1:
 				
-				if p1_s1 == 0: #Laser
+				if p1_s1 == 0:
 					laser()
 				
-				if p1_s1 == 2: #Sand
+				if p1_s1 == 2:
 					sand()
 				
-				if p1_s1 == 4: #Bricks
+				if p1_s1 == 4:
 					bricks()
 				
-				if p1_s1 == 6: #Hacking
+				if p1_s1 == 6:
 					hacking()
+				
+				if p1_s1 == 8:
+					anvil()
+				
 				
 				print("power1")
 			
 			if Input.is_action_just_pressed("p1skill2") and p1_cooldown_s2 == 0: #P1 Skill 2:
 				
-				if p1_s2 == 1: #Blitz
+				if p1_s2 == 1: 
 					blitz()
 				
-				if p1_s2 == 3: #Pyrimid
+				if p1_s2 == 3:
 					pyramid()
 				
+				if p1_s2 == 7:
+					Fire_wall()
 				
 				print("power2")
 			
@@ -367,17 +405,20 @@ func _physics_process(_delta):
 			
 			if Input.is_action_just_pressed("p2skill1") and p2_cooldown_s1 == 0: #P2 Skill 1
 				
-				if p2_s1 == 0: #laser
+				if p2_s1 == 0: 
 					laser()
 				
-				if p2_s1 == 2: #Sand
+				if p2_s1 == 2:
 					sand()
 				
-				if p2_s1 == 4: #Bricks
+				if p2_s1 == 4:
 					bricks()
 				
-				if p2_s1 == 6: #Hacking
+				if p2_s1 == 6:
 					hacking()
+				
+				if p1_s1 == 8:
+					anvil()
 				
 				print("P2 power1")
 			
@@ -388,6 +429,9 @@ func _physics_process(_delta):
 				
 				if p2_s2 == 3: #Pyrimid
 					pyramid()
+				
+				if p2_s2 == 7:
+					Fire_wall()
 				
 				print("P2 power2")
 			

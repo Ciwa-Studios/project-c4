@@ -142,6 +142,15 @@ func _process(_delta):
 				p2Label.text = "Robot"
 				p2Robot.visible = true
 				p2Pharaoh.visible = false
+		elif currentSelected == 3: #Hacker
+			if texture == player1Text:
+				p1Label.text = "Hacker"
+				p1Robot.visible = true
+				p1Pharaoh.visible = false
+			elif texture == player2Text:
+				p2Label.text = "Hacker"
+				p2Robot.visible = true
+				p2Pharaoh.visible = false
 		elif currentSelected == 4: #random
 			if texture == player1Text:
 				p1Label.text = "Random"
@@ -163,7 +172,7 @@ func _process(_delta):
 
 		if (Input.is_action_just_pressed(accept)):
 			if texture == player1Text:
-				if currentSelected == 0 or currentSelected == 1: #robot
+				if currentSelected == 0 or currentSelected == 1 or currentSelected == 3: 
 					Global.p1_char = currentSelected
 					var sprite = Sprite.new()
 					sprite.texture = texture
@@ -184,7 +193,7 @@ func _process(_delta):
 					deny.play()
 
 			elif texture == player2Text:
-				if currentSelected == 0 or currentSelected == 1:
+				if currentSelected == 0 or currentSelected == 1 or currentSelected == 3:
 					Global.p2_char = currentSelected
 					CharacterManager.manage()
 					transition.play("Start")
