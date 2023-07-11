@@ -1836,7 +1836,7 @@ modulate = Color( 1, 1, 1.2, 1 )
 position = Vector2( 168, 96 )
 frames = SubResource( 64 )
 animation = "Default"
-frame = 86
+frame = 101
 playing = true
 
 [node name="P2Win" type="AnimatedSprite" parent="UI/WinTitles"]
@@ -1844,7 +1844,7 @@ visible = false
 modulate = Color( 1.2, 1, 1, 1 )
 position = Vector2( 168, 96 )
 frames = SubResource( 254 )
-frame = 18
+frame = 33
 playing = true
 
 [node name="Timer" type="Timer" parent="UI/WinTitles"]

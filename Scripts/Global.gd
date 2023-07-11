@@ -26,13 +26,13 @@ var target_pos = Vector2(4,4) #target position for functions
 
 #p1 variables:
 var p1_health = 3
-var p1_char = 1
-var p1_s1 = 2 #p1 skill 1
-var p1_s2 = 3 #p1 skill 2
-var p1_max_cooldown_s1 = 6
-var p1_max_cooldown_s2 = 17
-var p1_cooldown_s1 = 6
-var p1_cooldown_s2 = 17
+var p1_char = 0
+var p1_s1 = 0 #p1 skill 1
+var p1_s2 = 1 #p1 skill 2
+var p1_max_cooldown_s1 = 5
+var p1_max_cooldown_s2 = 15
+var p1_cooldown_s1 = 5
+var p1_cooldown_s2 = 15
 
 #p2 variables:
 var p2_health = 3

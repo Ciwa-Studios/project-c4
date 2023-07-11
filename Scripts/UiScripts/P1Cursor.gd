@@ -7,11 +7,6 @@ onready var deny = get_parent().get_node("GridContainer/Deny")
 onready var p1Label = get_parent().get_node("P1")
 onready var p2Label = get_parent().get_node("P2")
 
-onready var p1Pharaoh = get_parent().get_node("P1/Pharaoh")
-onready var p1Robot = get_parent().get_node("P1/Robot")
-onready var p2Pharaoh = get_parent().get_node("P2/Pharaoh")
-onready var p2Robot = get_parent().get_node("P2/Robot")
-
 onready var transition = get_parent().get_node("CanvasLayer/Transition")
 onready var canvasLayer = $"../CanvasLayer"
 
@@ -126,49 +121,35 @@ func _process(_delta):
 
 		if currentSelected == 1: #Pharaoh
 			if texture == player1Text:
+				$"../P1/Character Sprites".animation.play("11")
 				p1Label.text = "Pharaoh"
-				p1Robot.visible = false
-				p1Pharaoh.visible = true
 			elif texture == player2Text:
+				$"../P2/Character Sprites2".animation.play("11")
 				p2Label.text = "Pharaoh"
-				p2Robot.visible = false
-				p2Pharaoh.visible = true
 		elif currentSelected == 0: #Robot
 			if texture == player1Text:
+				$"../P1/Character Sprites".animation.play("01")
 				p1Label.text = "Robot"
-				p1Robot.visible = true
-				p1Pharaoh.visible = false
 			elif texture == player2Text:
+				$"../P2/Character Sprites2".animation.play("01")
 				p2Label.text = "Robot"
-				p2Robot.visible = true
-				p2Pharaoh.visible = false
 		elif currentSelected == 3: #Hacker
 			if texture == player1Text:
+				$"../P1/Character Sprites".animation.play("31")
 				p1Label.text = "Hacker"
-				p1Robot.visible = true
-				p1Pharaoh.visible = false
 			elif texture == player2Text:
+				$"../P2/Character Sprites2".animation.play("31")
 				p2Label.text = "Hacker"
-				p2Robot.visible = true
-				p2Pharaoh.visible = false
 		elif currentSelected == 4: #random
 			if texture == player1Text:
 				p1Label.text = "Random"
-				p1Robot.visible = false
-				p1Pharaoh.visible = false
 			elif texture == player2Text:
 				p2Label.text = "Random"
-				p2Robot.visible = false
-				p2Pharaoh.visible = false
 		else:
 			if texture == player1Text:
 				p1Label.text = "Locked"
-				p1Robot.visible = false
-				p1Pharaoh.visible = false
 			elif texture == player2Text:
 				p2Label.text = "Locked" 
-				p2Robot.visible = false
-				p2Pharaoh.visible = false
 
 		if (Input.is_action_just_pressed(accept)):
 			if texture == player1Text:

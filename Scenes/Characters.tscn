@@ -10,9 +10,9 @@
 [ext_resource path="res://Assets/Sprites/RandomIcon.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Audio/confirm.wav" type="AudioStream" id=9]
 [ext_resource path="res://Assets/Shaders/transitionCircle.tres" type="Material" id=10]
-[ext_resource path="res://Assets/Art/Characters/Robo/Robo_anim.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Art/Characters/Pharoh/Pharoh_Toukan.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Art/UI/SelectionIcons/HackerIcon.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Art/UI/P1Crosshair.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/Characters/Character Sprites.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -168,7 +168,7 @@ texture = ExtResource( 3 )
 margin_top = 36.0
 margin_right = 32.0
 margin_bottom = 68.0
-texture = ExtResource( 3 )
+texture = ExtResource( 13 )
 
 [node name="4" type="TextureRect" parent="GridContainer" groups=["Characters"]]
 margin_left = 36.0
@@ -232,19 +232,9 @@ custom_fonts/font = SubResource( 3 )
 text = "Locked"
 valign = 1
 
-[node name="Pharaoh" type="Sprite" parent="P1"]
-visible = false
-position = Vector2( 25, -68 )
-texture = ExtResource( 12 )
-hframes = 4
-
-[node name="Robot" type="Sprite" parent="P1"]
-visible = false
-position = Vector2( 21, -67 )
-scale = Vector2( 0.9875, 1 )
-texture = ExtResource( 11 )
-flip_h = true
-hframes = 4
+[node name="Character Sprites" parent="P1" instance=ExtResource( 15 )]
+position = Vector2( 24, -75 )
+player = 1
 
 [node name="P2" type="Label" parent="."]
 margin_left = 240.0
@@ -257,19 +247,9 @@ text = "Locked"
 align = 2
 valign = 1
 
-[node name="Pharaoh" type="Sprite" parent="P2"]
-visible = false
-position = Vector2( 35, -67 )
-texture = ExtResource( 12 )
-flip_h = true
-hframes = 4
-
-[node name="Robot" type="Sprite" parent="P2"]
-visible = false
-position = Vector2( 37, -66 )
-scale = Vector2( 0.9875, 1 )
-texture = ExtResource( 11 )
-hframes = 4
+[node name="Character Sprites2" parent="P2" instance=ExtResource( 15 )]
+position = Vector2( 28, -75 )
+player = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
