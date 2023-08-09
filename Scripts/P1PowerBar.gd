@@ -32,9 +32,7 @@ func _physics_process(_delta):
 		update_tween.start()
 
 func _input(event):
-	if event.is_action_pressed("p1skill1") and ability == 1 and ability_cooldown != 0:
-		bg.animation = "!ready"
-	if event.is_action_pressed("p1skill2") and ability == 2 and ability_cooldown != 0:
+	if (event.is_action_pressed("p1skill1")  and ability == 1) or (event.is_action_pressed("p1skill2") and ability == 2) and ability_cooldown != 0:
 		bg.animation = "!ready"
 
 

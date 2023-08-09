@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "",
+"base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://Addons/godot-git-plugin/git_api.gdns"
@@ -20,8 +20,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="C4"
-run/main_scene="res://UiScenes/MainMenu.tscn"
+config/name="project-c4"
+run/main_scene="res://Scenes/MainMenu.tscn"
 
 [autoload]
 
