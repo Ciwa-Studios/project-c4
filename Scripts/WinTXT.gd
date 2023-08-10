@@ -2,6 +2,7 @@ extends Node2D
 
 onready var p1 = $P1Win
 onready var p2 = $P2Win 
+onready var win = $Win
 onready var timer = $Timer
 onready var animation = $"../../CanvasLayer/AnimationPlayer"
 onready var transition = $"../../CanvasLayer/Transition"
@@ -14,9 +15,11 @@ func _ready():
 func win():
 	var winner = Global.winner
 	if winner == 1:
+		win.play()
 		p1.visible = true
 		timer.start()
 	elif winner == 2:
+		win.play()
 		p2.visible = true
 		timer.start()
 	else:

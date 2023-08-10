@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/UiScripts/P1Cursor.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/P1Crosshair.png" type="Texture" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://Assets/Sprites/PharohIcon.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Sprites/RoboIcon.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Sprites/RandomIcon.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Audio/confirm.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Audio/Confirm.wav" type="AudioStream" id=9]
 [ext_resource path="res://Assets/Shaders/transitionCircle.tres" type="Material" id=10]
+[ext_resource path="res://Assets/Audio/ButtonFocused.wav" type="AudioStream" id=11]
 [ext_resource path="res://Assets/Art/UI/SelectionIcons/HackerIcon.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Art/UI/P1Crosshair.png" type="Texture" id=14]
 [ext_resource path="res://Scenes/Characters/Character Sprites.tscn" type="PackedScene" id=15]
@@ -140,6 +141,11 @@ player2Text = ExtResource( 4 )
 amountOfRows = 3
 portraitOffset = Vector2( 36, 36 )
 
+[node name="Move" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+volume_db = -5.0
+pitch_scale = 1.3
+
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 112.0
 margin_top = 64.0
@@ -206,11 +212,10 @@ texture = ExtResource( 3 )
 
 [node name="Confirm" type="AudioStreamPlayer2D" parent="GridContainer"]
 stream = ExtResource( 9 )
-pitch_scale = 1.1
 
 [node name="Deny" type="AudioStreamPlayer2D" parent="GridContainer"]
 stream = ExtResource( 9 )
-pitch_scale = 0.6
+pitch_scale = 0.5
 
 [node name="Title" type="Label" parent="."]
 margin_left = 72.0

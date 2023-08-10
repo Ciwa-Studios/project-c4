@@ -20,7 +20,7 @@ onready var resolution = $Options/Resolution
 onready var keybinds = $Options/Keybinds
 onready var _return = $Options/Return
 
-onready var buttonPressed = $Menu/ButtonPressed
+onready var buttonPressed = $ButtonPressed
 onready var animationPlayer = $AnimationPlayer
 
 func _ready():
@@ -90,7 +90,7 @@ func _init_Menu_UI():
 	$Settings.visible = false
 	$Menu.visible = true
 	$Patch.visible = true
-	$Links.visible = true
+	#$Links.visible = true
 	$Options.visible = false
 	play.grab_focus()
 

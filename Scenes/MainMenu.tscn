@@ -1,12 +1,8 @@
-[gd_scene load_steps=162 format=2]
+[gd_scene load_steps=158 format=2]
 
 [ext_resource path="res://Assets/Audio/ButtonPressed.wav" type="AudioStream" id=1]
 [ext_resource path="res://Assets/Styles/pixil-frame-0 (18).png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprites/Instagram.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Audio/ButtonFocused.wav" type="AudioStream" id=4]
-[ext_resource path="res://Assets/Sprites/YoutubePressed.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/InstagramPressed.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/Youtube.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/UiScripts/Control.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/UiScripts/Menu.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/UiScripts/Rebind.gd" type="Script" id=10]
@@ -135,24 +131,12 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Links:modulate")
+tracks/2/path = NodePath("Patch:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Patch:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
@@ -388,7 +372,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Links:modulate")
+tracks/4/path = NodePath("Panel:rect_size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -397,10 +381,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Vector2( 100, 192 ), Vector2( 140, 192 ), Vector2( 180, 192 ), Vector2( 220, 192 ), Vector2( 260, 192 ), Vector2( 300, 192 ), Vector2( 312, 192 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Panel:rect_size")
+tracks/5/path = NodePath("Fighters:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -409,7 +393,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 100, 192 ), Vector2( 140, 192 ), Vector2( 180, 192 ), Vector2( 220, 192 ), Vector2( 260, 192 ), Vector2( 300, 192 ), Vector2( 312, 192 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Fighters:modulate")
@@ -418,18 +402,6 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Fighters:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
@@ -490,24 +462,12 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Links:modulate")
+tracks/4/path = NodePath("Panel:rect_size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Panel:rect_size")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
@@ -568,7 +528,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Links:modulate")
+tracks/4/path = NodePath("Panel:rect_size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -577,10 +537,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Vector2( 100, 192 ), Vector2( 140, 192 ), Vector2( 180, 192 ), Vector2( 220, 192 ), Vector2( 260, 192 ), Vector2( 300, 192 ), Vector2( 312, 192 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Panel:rect_size")
+tracks/5/path = NodePath("Fighters:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -589,7 +549,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 100, 192 ), Vector2( 140, 192 ), Vector2( 180, 192 ), Vector2( 220, 192 ), Vector2( 260, 192 ), Vector2( 300, 192 ), Vector2( 312, 192 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Fighters:modulate")
@@ -598,18 +558,6 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.686275 ), Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Fighters:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
@@ -787,7 +735,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Links:modulate")
+tracks/5/path = NodePath("Panel:rect_size")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -796,10 +744,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Vector2( 100, 192 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Panel:rect_size")
+tracks/6/path = NodePath("Panel:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -808,10 +756,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 100, 192 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Panel:modulate")
+tracks/7/path = NodePath("Keybinds:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -823,7 +771,7 @@ tracks/7/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Keybinds:modulate")
+tracks/8/path = NodePath("KeybindsPanel:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -832,10 +780,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("KeybindsPanel:modulate")
+tracks/9/path = NodePath("Fighters:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -859,7 +807,7 @@ tracks/10/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Fighters:modulate")
+tracks/11/path = NodePath("Characters:modulate")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -871,7 +819,7 @@ tracks/11/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Characters:modulate")
+tracks/12/path = NodePath("Stage:modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -883,24 +831,12 @@ tracks/12/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("Stage:modulate")
+tracks/13/path = NodePath("Play:modulate")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("Play:modulate")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -1286,9 +1222,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MainMenu" type="AudioStreamPlayer" parent="."]
+[node name="ButtonFocused" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 volume_db = -10.0
-autoplay = true
+pitch_scale = 1.3
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -5.0
+pitch_scale = 1.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.5
@@ -1373,16 +1315,6 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": true
 }
-
-[node name="ButtonFocused" type="AudioStreamPlayer" parent="Menu"]
-stream = ExtResource( 4 )
-volume_db = -20.0
-pitch_scale = 1.3
-
-[node name="ButtonPressed" type="AudioStreamPlayer" parent="Menu"]
-stream = ExtResource( 1 )
-volume_db = -15.0
-pitch_scale = 1.3
 
 [node name="Play" type="Button" parent="Menu"]
 margin_right = 71.0
@@ -1607,16 +1539,6 @@ margin_right = 309.0
 margin_bottom = 179.0
 script = ExtResource( 24 )
 
-[node name="ButtonFocused" type="AudioStreamPlayer" parent="Stage"]
-stream = ExtResource( 4 )
-volume_db = -20.0
-pitch_scale = 1.3
-
-[node name="ButtonPressed" type="AudioStreamPlayer" parent="Stage"]
-stream = ExtResource( 1 )
-volume_db = -15.0
-pitch_scale = 1.3
-
 [node name="TextureRect" type="TextureRect" parent="Stage"]
 margin_right = 175.0
 margin_bottom = 157.0
@@ -1731,16 +1653,6 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="ButtonFocused" type="AudioStreamPlayer" parent="Options"]
-stream = ExtResource( 4 )
-volume_db = -20.0
-pitch_scale = 1.3
-
-[node name="ButtonPressed" type="AudioStreamPlayer" parent="Options"]
-stream = ExtResource( 1 )
-volume_db = -15.0
-pitch_scale = 1.3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Options"]
 margin_right = 220.0
@@ -1994,11 +1906,6 @@ script = ExtResource( 14 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="ButtonFocused" type="AudioStreamPlayer" parent="Keybinds"]
-stream = ExtResource( 4 )
-volume_db = -15.0
-pitch_scale = 1.3
 
 [node name="P1" type="VBoxContainer" parent="Keybinds"]
 margin_right = 89.0
@@ -2611,7 +2518,7 @@ margin_top = 2.0
 margin_right = 56.0
 margin_bottom = 12.0
 custom_fonts/font = SubResource( 15 )
-text = "ver 1.1"
+text = "ver 1.1.1"
 
 [node name="Label" type="Label" parent="Patch/Panel"]
 margin_right = 68.0
@@ -2620,33 +2527,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 12 )
 text = "
-- Fixed bugs."
+- New sound effects."
 autowrap = true
-
-[node name="Links" type="HBoxContainer" parent="."]
-visible = false
-margin_left = 282.0
-margin_top = 159.0
-margin_right = 316.0
-margin_bottom = 175.0
-custom_constants/separation = 2
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="Instagram" type="TextureButton" parent="Links"]
-margin_right = 16.0
-margin_bottom = 16.0
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 6 )
-
-[node name="Youtube" type="TextureButton" parent="Links"]
-margin_left = 18.0
-margin_right = 34.0
-margin_bottom = 16.0
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 5 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 147 )
@@ -2672,8 +2554,11 @@ environment = SubResource( 147 )
 [connection signal="mouse_entered" from="Menu/Quit" to="Menu" method="_on_Quit_mouse_entered"]
 [connection signal="mouse_exited" from="Menu/Quit" to="Menu" method="_on_Quit_mouse_exited"]
 [connection signal="button_up" from="Fighters/Pharaoh" to="Stage" method="_on_Pharaoh_button_up"]
+[connection signal="focus_entered" from="Fighters/Pharaoh" to="Stage" method="_on_Pharaoh_focus_entered"]
 [connection signal="button_up" from="Fighters/Robot" to="Stage" method="_on_Robot_button_up"]
+[connection signal="focus_entered" from="Fighters/Robot" to="Stage" method="_on_Robot_focus_entered"]
 [connection signal="button_up" from="Fighters/Return2" to="." method="_on_Return2_button_up"]
+[connection signal="focus_entered" from="Fighters/Return2" to="Stage" method="_on_Return2_focus_entered"]
 [connection signal="mouse_entered" from="Stage/TextureRect/Pharaoh" to="Fighters" method="_on_Pharaoh_mouse_entered"]
 [connection signal="toggled" from="Options/HBoxContainer/V-sync" to="." method="_on_Vsync_toggled"]
 [connection signal="toggled" from="Options/HBoxContainer/Fullscreen" to="." method="_on_Fullscreen_toggled"]

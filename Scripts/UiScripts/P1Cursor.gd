@@ -6,6 +6,7 @@ onready var confirm = get_parent().get_node("GridContainer/Confirm")
 onready var deny = get_parent().get_node("GridContainer/Deny")
 onready var p1Label = get_parent().get_node("P1")
 onready var p2Label = get_parent().get_node("P2")
+onready var move = get_parent().get_node("Move")
 
 onready var transition = get_parent().get_node("CanvasLayer/Transition")
 onready var canvasLayer = $"../CanvasLayer"
@@ -50,6 +51,7 @@ func _process(_delta):
 			turnDown = "p2down"
 		
 		if(Input.is_action_just_pressed(turnRight)):
+			move.play()
 			currentSelected += 1
 			currentColumnSpot += 1
 			
@@ -71,6 +73,7 @@ func _process(_delta):
 			else:
 				position.x += portraitOffset.x   # Move to the new position based on the offset
 		elif(Input.is_action_just_pressed(turnLeft)):
+			move.play()
 			currentSelected -= 1
 			currentColumnSpot -= 1
 			
@@ -92,6 +95,7 @@ func _process(_delta):
 			else:
 				position.x -= portraitOffset.x # Move to the new position based on the offset
 		if(Input.is_action_just_pressed(turnDown)):
+			move.play()
 			currentSelected += 3
 			currentRowSpot += 1
 			
@@ -105,6 +109,7 @@ func _process(_delta):
 				position.y += portraitOffset.y
 				
 		elif(Input.is_action_just_pressed(turnUp)):
+			move.play()
 			currentSelected -= 3
 			currentRowSpot -= 1
 			

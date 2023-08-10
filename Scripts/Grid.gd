@@ -14,7 +14,7 @@ var grid_size = Vector2(COLUMNS, ROWS) #vector2 containing COLOUMNS by ROWS
 var grid = [] #Creates grid array
 
 
-
+onready var place = $Place
 onready var Crosshair = preload("res://Scenes/Crosshair.tscn") #Preloads crosshair scene
 onready var P1Counter = preload("res://Scenes/Counters/P1Counter.tscn") #Preloads p1Counter scene
 onready var P2Counter = preload("res://Scenes/Counters/P2Counter.tscn") #Preloads p2Counter scene
@@ -78,6 +78,7 @@ func place_item():
 				new_counter.name = str(pos.x) + str(pos.y)
 				grid[pos.x][pos.y] = OBSTACLE
 				add_child(new_counter)
+			place.play()
 
 # Check if cell at direction is vacant
 func is_cell_vacant(this_grid_pos=Vector2(), direction=Vector2()):
