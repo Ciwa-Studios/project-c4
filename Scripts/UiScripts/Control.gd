@@ -75,7 +75,6 @@ func _init_Play_UI():
 	$Title.visible = false
 	$Menu.visible = false
 	$Patch.visible = false
-	$Links.visible = false
 
 func _init_Menu_UI():
 # called when "FadeOutOptions_ToMenu" animation is finished
@@ -90,7 +89,6 @@ func _init_Menu_UI():
 	$Settings.visible = false
 	$Menu.visible = true
 	$Patch.visible = true
-	#$Links.visible = true
 	$Options.visible = false
 	play.grab_focus()
 
@@ -106,7 +104,6 @@ func _init_Fighters_UI():
 	$Title.visible = false
 	$Menu.visible = false
 	$Patch.visible = false
-	$Links.visible = false
 
 func _init_Options_UI():
 # called when "FadeOutMenu_ToOptions" animation is finished
@@ -119,7 +116,6 @@ func _init_Options_UI():
 	$Keybinds.visible = false
 	$KeybindsPanel.visible = false
 	$Patch.visible = false
-	$Links.visible = false
 	$Options.visible = true
 	_return.grab_focus()
 	
