@@ -158,7 +158,7 @@ func _process(_delta):
 
 		if (Input.is_action_just_pressed(accept)):
 			if texture == player1Text:
-				if currentSelected == 0 or currentSelected == 1 or currentSelected == 3: 
+				if currentSelected == 0 or currentSelected == 1 or currentSelected == 3 or currentSelected == 5: 
 					Global.p1_char = currentSelected
 					var sprite = Sprite.new()
 					sprite.texture = texture
@@ -179,7 +179,7 @@ func _process(_delta):
 					deny.play()
 
 			elif texture == player2Text:
-				if currentSelected == 0 or currentSelected == 1 or currentSelected == 3:
+				if currentSelected == 0 or currentSelected == 1 or currentSelected == 3 or currentSelected == 5:
 					Global.p2_char = currentSelected
 					CharacterManager.manage()
 					transition.play("Start")

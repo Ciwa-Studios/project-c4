@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/UiScripts/P1Cursor.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/P1Crosshair.png" type="Texture" id=2]
@@ -11,9 +11,11 @@
 [ext_resource path="res://Assets/Audio/Confirm.wav" type="AudioStream" id=9]
 [ext_resource path="res://Assets/Shaders/transitionCircle.tres" type="Material" id=10]
 [ext_resource path="res://Assets/Audio/ButtonFocused.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Art/UI/SelectionIcons/AngelIcon.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Art/UI/SelectionIcons/HackerIcon.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Art/UI/P1Crosshair.png" type="Texture" id=14]
 [ext_resource path="res://Scenes/Characters/Character Sprites.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Art/UI/SelectionIcons/LockedIcon.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -188,13 +190,13 @@ margin_left = 72.0
 margin_top = 36.0
 margin_right = 104.0
 margin_bottom = 68.0
-texture = ExtResource( 3 )
+texture = ExtResource( 12 )
 
 [node name="6" type="TextureRect" parent="GridContainer" groups=["Characters"]]
 margin_top = 72.0
 margin_right = 32.0
 margin_bottom = 104.0
-texture = ExtResource( 3 )
+texture = ExtResource( 16 )
 
 [node name="7" type="TextureRect" parent="GridContainer" groups=["Characters"]]
 margin_left = 36.0

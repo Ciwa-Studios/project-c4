@@ -18,7 +18,11 @@ onready var place = $Place
 onready var Crosshair = preload("res://Scenes/Crosshair.tscn") #Preloads crosshair scene
 onready var P1Counter = preload("res://Scenes/Counters/P1Counter.tscn") #Preloads p1Counter scene
 onready var P2Counter = preload("res://Scenes/Counters/P2Counter.tscn") #Preloads p2Counter scene
+onready var NeutralCounter = preload("res://Scenes/Counters/NeutralCounter.tscn")
 onready var laser = preload("res://Scenes/Effects/Laser.tscn")
+onready var blitz = preload("res://Scenes/Effects/Blitz.tscn")
+onready var sword = preload("res://Scenes/Effects/Sword.tscn")
+onready var star = preload("res://Scenes/Effects/Star.tscn")
 
 #Global Variables
 const Crosshair_STARTPOS = Vector2(4,4) #Assigns the starting point for the crosshair 
@@ -34,7 +38,8 @@ func _ready():
 # warning-ignore:return_value_discarded
 	Global.connect("place_counter", self, "place_item")
 # warning-ignore:return_value_discarded
-	Global.connect("skill_1", self, "spawn_laser")
+	Global.connect("skill_1", self, "skill_1_effects")
+	Global.connect("skill_2", self, "skill_2_effects")
 	grid = []
 	for x in range(grid_size.x):
 		grid.append([])
@@ -78,6 +83,13 @@ func place_item():
 				new_counter.name = str(pos.x) + str(pos.y)
 				grid[pos.x][pos.y] = OBSTACLE
 				add_child(new_counter)
+			elif board[pos.y][pos.x] == 3: 
+				new_counter = NeutralCounter.instance()
+				new_counter.position = map_to_world(pos) + half_tile_size
+				new_counter.z_index = pos.y
+				new_counter.name = str(pos.x) + str(pos.y)
+				grid[pos.x][pos.y] = OBSTACLE
+				add_child(new_counter)
 			place.play()
 
 # Check if cell at direction is vacant
@@ -102,13 +114,28 @@ func update_child_pos(this_world_pos, direction, _type):
 	var new_world_pos = map_to_world(new_grid_pos) + half_tile_size
 	return new_world_pos
 
-func spawn_laser():
-	if Global.p1_s1 == 0 or Global.p2_s1 == 0:
-		var new_laser = laser.instance()
-		new_laser.position = map_to_world(Global.crosshair) + half_tile_size
-		new_laser.position.x = 0
-		add_child(new_laser)
+func skill_1_effects():
+	if (Global.p1_s1 == 0 and Global.turn == 0) or Global.p2_s1 == 0 and Global.turn == 1:
+		var new_effect = laser.instance()
+		new_effect.position = map_to_world(Global.crosshair) + half_tile_size
+		new_effect.position.x = 0
+		add_child(new_effect)
+	if Global.p1_s1 == 10 and Global.turn == 0 or Global.p2_s1 == 10 and Global.turn == 1:
+		var new_effect = star.instance()
+		new_effect.position = map_to_world(Global.crosshair) + half_tile_size
+		add_child(new_effect)
 	pass
+
+func skill_2_effects():
+	if Global.p1_s2 == 1 and Global.turn == 0 or Global.p2_s2 == 1 and Global.turn == 1:
+		var new_effect = blitz.instance()
+		new_effect.position = Vector2.ZERO
+		add_child(new_effect)
+	if Global.p1_s2 == 11 and Global.turn == 0 or Global.p2_s2 == 11 and Global.turn == 1:
+		var new_effect = sword.instance()
+		new_effect.position = map_to_world(Global.crosshair) + half_tile_size
+		new_effect.position.y = 0
+		add_child(new_effect)
 
 func reset():
 	self.get_node("Crosshair").queue_free()

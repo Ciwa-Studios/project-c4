@@ -10,7 +10,7 @@ signal game_over()
 signal hurt(p)
 signal turn_change()
 signal skill_1()
-#signal skill_2()
+signal skill_2()
 
 var play = false
 var turn = 0 #game turn
@@ -29,20 +29,20 @@ var p1_health = 3
 var p1_char = 0
 var p1_s1 = 0 #p1 skill 1
 var p1_s2 = 1 #p1 skill 2
-var p1_max_cooldown_s1 = 5
-var p1_max_cooldown_s2 = 15
-var p1_cooldown_s1 = 5
-var p1_cooldown_s2 = 15
+var p1_max_cooldown_s1:int
+var p1_max_cooldown_s2:int
+var p1_cooldown_s1:int
+var p1_cooldown_s2:int
 
 #p2 variables:
 var p2_health = 3
 var p2_char = 0
 var p2_s1 = 0 #p2 skill 1
 var p2_s2 = 1 #p2 skill 2
-var p2_max_cooldown_s1 = 5
-var p2_max_cooldown_s2 = 15
-var p2_cooldown_s1 = 5
-var p2_cooldown_s2 = 15
+var p2_max_cooldown_s1:int
+var p2_max_cooldown_s2:int
+var p2_cooldown_s1:int
+var p2_cooldown_s2:int
 
 var skill_used = false
 
@@ -262,14 +262,16 @@ func sand():
 				else:
 					p2_cooldown_s1 = p2_max_cooldown_s1
 	skip_turn()
-func hacking():
-	if check_for_counter(row, col):
-		if turn == 0:
-			p1_cooldown_s1 = p1_max_cooldown_s1
-		else:
-			p2_cooldown_s1 = p2_max_cooldown_s1
-		destroy_block()
-		place_counter()
+func fire_wall():
+	if turn == 0:
+		p2_cooldown_s1 += 3
+		p2_cooldown_s2 += 4
+		p1_cooldown_s1 = p1_max_cooldown_s1
+	if turn == 1:
+		p1_cooldown_s1 += 3
+		p1_cooldown_s2 += 4
+		p2_cooldown_s1 = p2_max_cooldown_s1
+	skip_turn()
 func bricks():
 	if !check_for_counter(row,col):
 		if turn == 0:
@@ -288,6 +290,26 @@ func anvil():
 			p2_cooldown_s1 = p2_max_cooldown_s1
 		skip_turn()
 	pass
+func star():
+	if check_for_counter(row, col):
+		skill_used = true
+		destroy_block()
+		place_counter_no_skip(row, col, 3)
+		if row != 0:
+			destroy_block(Vector2(col, row-1))
+		if col != 0:
+			destroy_block(Vector2(col-1, row))
+		if row != ROWS-1:
+			destroy_block(Vector2(col, row+1))
+		if col != COLUMNS-1:
+			destroy_block(Vector2(col+1, row))
+		if skill_used == true:
+			if turn == 0:
+				p1_cooldown_s1 = p1_max_cooldown_s1
+			else:
+				p2_cooldown_s1 = p2_max_cooldown_s1
+			emit_signal("skill_1")
+			skip_turn()
 
 #2nd Skills:
 func blitz():
@@ -295,6 +317,7 @@ func blitz():
 		for r in ROWS:
 			if check_for_counter(r, c):
 				skill_used = true
+				emit_signal("skill_2")
 				destroy_block(Vector2(c, r))
 				break
 			if c == COLUMNS-1 and skill_used ==true:
@@ -328,17 +351,29 @@ func pyramid():
 	else:
 		p2_cooldown_s2 = p2_max_cooldown_s2
 	skip_turn()
+func hacking():
+	if check_for_counter(row, col):
+		if turn == 0:
+			p1_cooldown_s2 = p1_max_cooldown_s2
+		else:
+			p2_cooldown_s2 = p2_max_cooldown_s2
+		destroy_block()
+		place_counter()
 
-func Fire_wall():
-	if turn == 0:
-		p2_cooldown_s1 += 5
-		p2_cooldown_s2 += 5
-		p1_cooldown_s2 = p1_max_cooldown_s2
-	if turn == 1:
-		p1_cooldown_s1 += 5
-		p1_cooldown_s2 += 5
-		p2_cooldown_s2 = p2_max_cooldown_s2
-	skip_turn()
+func sword():
+	emit_signal("skill_2")
+	skill_used = true
+	for r in ROWS:
+		if check_for_counter(r, col):
+			destroy_block(Vector2(col, r))
+#		yield(get_tree().create_timer(0.05), "timeout")
+		place_counter_no_skip(r, col, 3, 4)
+		if r == ROWS - 1 and skill_used == true:
+			if turn == 0:
+				p1_cooldown_s2 = p1_max_cooldown_s2
+			else:
+				p2_cooldown_s2 = p2_max_cooldown_s2
+			skip_turn()
 
 #counter skills:
 func sand_counter():
@@ -373,11 +408,13 @@ func _physics_process(_delta):
 					bricks()
 				
 				if p1_s1 == 6:
-					hacking()
+					fire_wall()
 				
 				if p1_s1 == 8:
 					anvil()
 				
+				if p1_s1 == 10:
+					star()
 				
 				print("power1")
 			
@@ -390,7 +427,10 @@ func _physics_process(_delta):
 					pyramid()
 				
 				if p1_s2 == 7:
-					Fire_wall()
+					hacking()
+				
+				if p1_s2 == 11:
+					sword()
 				
 				print("power2")
 			
@@ -415,23 +455,29 @@ func _physics_process(_delta):
 					bricks()
 				
 				if p2_s1 == 6:
-					hacking()
+					fire_wall()
 				
-				if p1_s1 == 8:
+				if p2_s1 == 8:
 					anvil()
+				
+				if p2_s1 == 10:
+					star()
 				
 				print("P2 power1")
 			
 			if Input.is_action_just_pressed("p2skill2") and p2_cooldown_s2 == 0: #P2 skill 2
 				
-				if p2_s2 == 1: #Blitz
+				if p2_s2 == 1:
 					blitz()
 				
-				if p2_s2 == 3: #Pyrimid
+				if p2_s2 == 3:
 					pyramid()
 				
-				if p2_s2 == 7:
-					Fire_wall()
+				if p2_s2 == 7: 
+					hacking()
+				
+				if p2_s2 == 11:
+					sword()
 				
 				print("P2 power2")
 			

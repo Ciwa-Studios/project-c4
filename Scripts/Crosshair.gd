@@ -4,7 +4,7 @@ var direction = Vector2()
 var col = Global.col
 var row = Global.row
 
-const MAX_SPEED = 200
+const MAX_SPEED = 150
 
 var speed = 0
 var velocity = Vector2()
