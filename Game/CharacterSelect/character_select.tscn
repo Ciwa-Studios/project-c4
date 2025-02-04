@@ -1,0 +1,204 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsa8b756nvtof"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_i1dj8"]
+[ext_resource type="Texture2D" uid="uid://b3hgfxexmorr7" path="res://Game/Characters/BigCharacterSprites.png" id="2_q4k63"]
+[ext_resource type="Theme" uid="uid://b62c6phcn8wdb" path="res://Game/UI/Font/Theme.tres" id="3_1ekrh"]
+[ext_resource type="Texture2D" uid="uid://chhhbgpaq5y7f" path="res://Game/CharacterSelect/IconBorders.png" id="4_djmo4"]
+[ext_resource type="Texture2D" uid="uid://bxacnu7k0dcbg" path="res://Game/CharacterSelect/AngelSelectIcon.png" id="5_57dww"]
+[ext_resource type="Texture2D" uid="uid://br8e8c6bv522k" path="res://Game/CharacterSelect/p1SelectIcon.png" id="6_f23nm"]
+[ext_resource type="Texture2D" uid="uid://1n6it0eq6li0" path="res://Game/CharacterSelect/p2SelectIcon.png" id="7_6qjla"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cxqtp"]
+texture = ExtResource("4_djmo4")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i1dj8")
+lower_bound = 1
+upper_bound = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0352941, 0.0392157, 0.0784314, 1)
+metadata/_edit_lock_ = true
+
+[node name="CharacterSprites" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterSprites"]
+texture = ExtResource("2_q4k63")
+offset = Vector2(120, 135)
+hframes = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="CharacterSprites"]
+scale = Vector2(-1, 1)
+texture = ExtResource("2_q4k63")
+offset = Vector2(-360, 135)
+hframes = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="p1CharLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("3_1ekrh")
+theme_override_colors/font_color = Color(0.309804, 0.560784, 0.729412, 1)
+theme_override_colors/font_outline_color = Color(0.0352941, 0.0392157, 0.0784314, 1)
+theme_override_constants/outline_size = 9
+text = "Angel"
+
+[node name="Pharoh" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cxqtp")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Pharoh"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+stretch_mode = 2
+
+[node name="Angel" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cxqtp")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Angel"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+texture = ExtResource("5_57dww")
+stretch_mode = 2
+
+[node name="Samurai" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cxqtp")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Samurai"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+stretch_mode = 2
+
+[node name="Random" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cxqtp")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Random"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+stretch_mode = 2
+
+[node name="Panel5" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cxqtp")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel5"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+stretch_mode = 2
+
+[node name="Panel6" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cxqtp")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel6"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+stretch_mode = 2
+
+[node name="Panel7" type="Panel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cxqtp")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Panel7"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 35.0
+offset_bottom = 35.0
+stretch_mode = 2
+
+[node name="p2CharLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("3_1ekrh")
+theme_override_colors/font_color = Color(0.647059, 0.188235, 0.188235, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+text = "Samurai"
+
+[node name="p1Crosshair" type="Node2D" parent="."]
+position = Vector2(114, 212)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="p1Crosshair"]
+texture = ExtResource("6_f23nm")
+
+[node name="p2Crosshair" type="Node2D" parent="."]
+position = Vector2(114, 258)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="p2Crosshair"]
+texture = ExtResource("7_6qjla")

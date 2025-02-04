@@ -1,0 +1,183 @@
+[gd_scene load_steps=12 format=3 uid="uid://qvhdkjrmj21m"]
+
+[ext_resource type="Texture2D" uid="uid://dglbq3t1yl3hq" path="res://Game/Pieces/P2 pieces/p2_piece.png" id="1_i1315"]
+[ext_resource type="Script" path="res://Game/Pieces/piece.gd" id="1_o8pxj"]
+[ext_resource type="Texture2D" uid="uid://d6m3cy753ct1" path="res://Game/VFX/Light1.png" id="3_wq760"]
+
+[sub_resource type="Animation" id="Animation_nkufw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_okhf4"]
+resource_name = "brick"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_3qwhq"]
+resource_name = "normal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i7div"]
+resource_name = "sand"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7b1y"]
+_data = {
+"RESET": SubResource("Animation_nkufw"),
+"brick": SubResource("Animation_okhf4"),
+"normal": SubResource("Animation_3qwhq"),
+"sand": SubResource("Animation_i7div")
+}
+
+[sub_resource type="Animation" id="Animation_i3rci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -24)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.8, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_t24fu"]
+resource_name = "spawn"
+length = 0.5
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -24), Vector2(0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.8, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.15, 0.375)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1.2, -0.25, 0, 0.25, 0, 0.9, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.15, 0.375)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_olg0c"]
+_data = {
+"RESET": SubResource("Animation_i3rci"),
+"spawn": SubResource("Animation_t24fu")
+}
+
+[node name="p2NormalPiece" type="Node2D"]
+position = Vector2(0, 1)
+script = ExtResource("1_o8pxj")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(0.8, 1.2)
+texture = ExtResource("1_i1315")
+vframes = 3
+
+[node name="PieceType" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w7b1y")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_olg0c")
+}
+autoplay = "spawn"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.647059, 0.188235, 0.188235, 1)
+energy = 2.0
+range_item_cull_mask = 2
+texture = ExtResource("3_wq760")
+texture_scale = 0.6

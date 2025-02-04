@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://csac10v3tt4q"]
+
+[ext_resource type="Script" path="res://Game/UI/Energy/energy.gd" id="1_54g5i"]
+[ext_resource type="Texture2D" uid="uid://beqfowsjruxia" path="res://Game/UI/Energy/EmptyEnergy.png" id="2_vlyyu"]
+[ext_resource type="Texture2D" uid="uid://cf6obv1sgotd1" path="res://Game/UI/Energy/P2Energy.png" id="3_rlxrj"]
+
+[node name="p1_energy" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_54g5i")
+
+[node name="Empty" type="Sprite2D" parent="."]
+texture = ExtResource("2_vlyyu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_rlxrj")
