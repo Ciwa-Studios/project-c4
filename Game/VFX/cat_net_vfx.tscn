@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://rtx4hqv8opmm"]
+
+[ext_resource type="Script" path="res://Game/VFX/turn_vfx.gd" id="1_8xhkx"]
+[ext_resource type="Texture2D" uid="uid://b8ijn2pvwv051" path="res://Game/VFX/CatNet.png" id="2_585yj"]
+
+[node name="CatNetVFX" type="Node2D"]
+z_index = 12
+script = ExtResource("1_8xhkx")
+
+[node name="CatNet" type="Sprite2D" parent="."]
+texture = ExtResource("2_585yj")

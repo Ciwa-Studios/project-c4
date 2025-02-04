@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://ddhgq38cn2hix"
+path="res://.godot/imported/Weiholmir_GameMaker_sheet.png-0fd6ffbb8a900db68f7943bcde6d7063.fontdata"
+
+[deps]
+
+source_file="res://Game/UI/Font/Weiholmir_GameMaker_sheet.png"
+dest_files=["res://.godot/imported/Weiholmir_GameMaker_sheet.png-0fd6ffbb8a900db68f7943bcde6d7063.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("\'\'\' - \'|\'")
+kerning_pairs=PackedStringArray()
+columns=10
+rows=10
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2

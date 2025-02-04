@@ -1,0 +1,257 @@
+[gd_scene load_steps=21 format=3 uid="uid://cii66oasnsx4s"]
+
+[ext_resource type="Script" path="res://Game/game.gd" id="1_ovnut"]
+[ext_resource type="Texture2D" uid="uid://dr65dknxgvg76" path="res://Game/Board/Board.png" id="1_ypfyb"]
+[ext_resource type="PackedScene" uid="uid://4mh0e0jt8l0n" path="res://Game/Crosshair/crosshair.tscn" id="2_3k2m8"]
+[ext_resource type="Script" path="res://Game/UI/Camera/camera.gd" id="2_xlj8d"]
+[ext_resource type="PackedScene" uid="uid://c4gsebda17s8p" path="res://Game/UI/Health/heart_container.tscn" id="4_qul0o"]
+[ext_resource type="PackedScene" uid="uid://bdkaft7isqf80" path="res://Game/UI/Health/p1_heart.tscn" id="5_s3ria"]
+[ext_resource type="PackedScene" uid="uid://bdsy1cctet5vd" path="res://Game/UI/Health/p2_heart.tscn" id="6_04p8p"]
+[ext_resource type="FontFile" uid="uid://ck6udtwx6udpy" path="res://Game/UI/Font/PeaberryBase.ttf" id="7_oh333"]
+[ext_resource type="PackedScene" uid="uid://jafjhkw7nxpn" path="res://Game/UI/Energy/energy_container.tscn" id="7_q8yhd"]
+[ext_resource type="Shader" path="res://Game/UI/Font/wavy_text.gdshader" id="8_awukf"]
+[ext_resource type="Script" path="res://Game/UI/TurnCounter/turn_counter.gd" id="8_pwdfx"]
+[ext_resource type="PackedScene" uid="uid://b2pa6vrnndgc6" path="res://Game/UI/Energy/p1_energy.tscn" id="8_y4j2w"]
+[ext_resource type="PackedScene" uid="uid://csac10v3tt4q" path="res://Game/UI/Energy/p2_energy.tscn" id="10_a7sfe"]
+[ext_resource type="PackedScene" uid="uid://bbl66fvkksxbs" path="res://Game/UI/PowerUps/power_up.tscn" id="15_li5rs"]
+
+[sub_resource type="Environment" id="Environment_wkbh7"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.2
+glow_bloom = 0.3
+
+[sub_resource type="Gradient" id="Gradient_1ip4l"]
+offsets = PackedFloat32Array(0, 0.754098, 1)
+colors = PackedColorArray(0.0352941, 0.0392157, 0.0784314, 1, 0.7568, 0.767067, 0.88, 1, 1.5, 1.5, 1.5, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m6qlx"]
+gradient = SubResource("Gradient_1ip4l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ltby"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 135, 0)
+emission_shape = 3
+emission_box_extents = Vector3(240, 1, 1)
+direction = Vector3(0.2, -1, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_m6qlx")
+
+[sub_resource type="TileSet" id="TileSet_tct4c"]
+tile_size = Vector2i(18, 18)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0oem7"]
+shader = ExtResource("8_awukf")
+shader_parameter/height = 1.0
+shader_parameter/frequency = 7.0
+shader_parameter/speed = 1.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ovnut")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(240, 135)
+script = ExtResource("2_xlj8d")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wkbh7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -167.0
+offset_top = -116.0
+offset_right = 880.0
+offset_bottom = 460.0
+color = Color(0.0352941, 0.0392157, 0.0784314, 1)
+metadata/_edit_lock_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(240, 135)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_5ltby")
+lifetime = 8.0
+randomness = 1.0
+visibility_rect = Rect2(-240, -135, 480, 270)
+
+[node name="BoardSprites" type="Sprite2D" parent="."]
+light_mask = 3
+position = Vector2(240, 135)
+texture = ExtResource("1_ypfyb")
+metadata/_edit_lock_ = true
+
+[node name="Crosshair" parent="." instance=ExtResource("2_3k2m8")]
+position = Vector2(159, 54)
+move_speed = 100.0
+
+[node name="Grid" type="TileMap" parent="."]
+position = Vector2(151, 46)
+tile_set = SubResource("TileSet_tct4c")
+format = 2
+
+[node name="P1HeartContainer" parent="." instance=ExtResource("4_qul0o")]
+offset_left = 147.0
+offset_top = 29.0
+offset_right = 185.0
+offset_bottom = 40.0
+player = 1
+metadata/_edit_lock_ = true
+
+[node name="p1_heart" parent="P1HeartContainer" instance=ExtResource("5_s3ria")]
+layout_mode = 2
+
+[node name="p1_heart2" parent="P1HeartContainer" instance=ExtResource("5_s3ria")]
+layout_mode = 2
+
+[node name="p1_heart3" parent="P1HeartContainer" instance=ExtResource("5_s3ria")]
+layout_mode = 2
+
+[node name="P1EnergyContainer" parent="." instance=ExtResource("7_q8yhd")]
+position = Vector2(140, 41)
+
+[node name="VBoxContainer" parent="P1EnergyContainer" index="1"]
+layout_direction = 3
+offset_left = -10.0
+offset_right = 0.0
+player = 1
+
+[node name="p1_energy10" parent="P1EnergyContainer/VBoxContainer" index="0" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="p1_energy9" parent="P1EnergyContainer/VBoxContainer" index="1" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="p1_energy8" parent="P1EnergyContainer/VBoxContainer" index="2" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="p1_energy7" parent="P1EnergyContainer/VBoxContainer" index="3" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="p1_energy6" parent="P1EnergyContainer/VBoxContainer" index="4" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="p1_energy5" parent="P1EnergyContainer/VBoxContainer" index="5" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="p1_energy4" parent="P1EnergyContainer/VBoxContainer" index="6" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="p1_energy3" parent="P1EnergyContainer/VBoxContainer" index="7" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="p1_energy2" parent="P1EnergyContainer/VBoxContainer" index="8" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="p1_energy" parent="P1EnergyContainer/VBoxContainer" index="9" instance=ExtResource("8_y4j2w")]
+layout_mode = 2
+
+[node name="P2HeartContainer" parent="." instance=ExtResource("4_qul0o")]
+layout_direction = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -333.0
+offset_top = 29.0
+offset_right = -295.0
+offset_bottom = 40.0
+grow_horizontal = 0
+alignment = 2
+player = 2
+metadata/_edit_lock_ = true
+
+[node name="p1_heart" parent="P2HeartContainer" instance=ExtResource("6_04p8p")]
+layout_mode = 2
+
+[node name="p1_heart2" parent="P2HeartContainer" instance=ExtResource("6_04p8p")]
+layout_mode = 2
+
+[node name="p1_heart3" parent="P2HeartContainer" instance=ExtResource("6_04p8p")]
+layout_mode = 2
+
+[node name="P2EnergyContainer" parent="." instance=ExtResource("7_q8yhd")]
+position = Vector2(340, 41)
+
+[node name="VBoxContainer" parent="P2EnergyContainer" index="1"]
+layout_direction = 3
+offset_left = -10.0
+offset_right = 0.0
+player = 2
+
+[node name="p1_energy" parent="P2EnergyContainer/VBoxContainer" index="0" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="p1_energy2" parent="P2EnergyContainer/VBoxContainer" index="1" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="p1_energy3" parent="P2EnergyContainer/VBoxContainer" index="2" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="p1_energy4" parent="P2EnergyContainer/VBoxContainer" index="3" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="p1_energy5" parent="P2EnergyContainer/VBoxContainer" index="4" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="p1_energy6" parent="P2EnergyContainer/VBoxContainer" index="5" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="p1_energy7" parent="P2EnergyContainer/VBoxContainer" index="6" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="p1_energy8" parent="P2EnergyContainer/VBoxContainer" index="7" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="p1_energy9" parent="P2EnergyContainer/VBoxContainer" index="8" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="p1_energy10" parent="P2EnergyContainer/VBoxContainer" index="9" instance=ExtResource("10_a7sfe")]
+layout_mode = 2
+
+[node name="TurnCounter" type="Label" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0oem7")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 147.0
+offset_top = 14.0
+offset_right = 333.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.309804, 0.560784, 0.729412, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("7_oh333")
+theme_override_font_sizes/font_size = 16
+text = "Turn 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_pwdfx")
+
+[node name="PowerUp" parent="." instance=ExtResource("15_li5rs")]
+position = Vector2(159, 243)
+player = 1
+skill = 1
+
+[node name="PowerUp2" parent="." instance=ExtResource("15_li5rs")]
+position = Vector2(186, 243)
+player = 1
+skill = 2
+
+[node name="PowerUp3" parent="." instance=ExtResource("15_li5rs")]
+position = Vector2(290, 243)
+player = 2
+skill = 1
+
+[node name="PowerUp4" parent="." instance=ExtResource("15_li5rs")]
+position = Vector2(317, 243)
+player = 2
+skill = 2
+
+[editable path="P1EnergyContainer"]
+[editable path="P2EnergyContainer"]

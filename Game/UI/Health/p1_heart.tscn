@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdkaft7isqf80"]
+
+[ext_resource type="Script" path="res://Game/UI/Health/heart.gd" id="1_0r27o"]
+[ext_resource type="Texture2D" uid="uid://dbly5nmambigp" path="res://Game/UI/Health/EmptyHeart.png" id="2_cbiij"]
+[ext_resource type="Texture2D" uid="uid://d2j3i2w0v2s5h" path="res://Game/UI/Health/p1Heart.png" id="3_dsi32"]
+
+[node name="p1_heart" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(12, 11)
+offset_right = 12.0
+offset_bottom = 11.0
+script = ExtResource("1_0r27o")
+
+[node name="Empty" type="Sprite2D" parent="."]
+position = Vector2(6, 5.5)
+texture = ExtResource("2_cbiij")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6, 5)
+texture = ExtResource("3_dsi32")
+hframes = 6

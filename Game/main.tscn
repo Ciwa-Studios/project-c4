@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2vs2x2c2gyj3"]
+
+[ext_resource type="PackedScene" uid="uid://bsa8b756nvtof" path="res://Game/CharacterSelect/character_select.tscn" id="1_jsoa3"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSelect" parent="." instance=ExtResource("1_jsoa3")]
+layout_mode = 1
+upper_bound = 3

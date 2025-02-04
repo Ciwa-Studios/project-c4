@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b62c6phcn8wdb"]
+
+[ext_resource type="FontFile" uid="uid://ck6udtwx6udpy" path="res://Game/UI/Font/PeaberryBase.ttf" id="1_0nj65"]
+
+[resource]
+default_font = ExtResource("1_0nj65")
